@@ -12,7 +12,7 @@ MMGCN is built with Python 3.7 with the following packages:
 # Datasets
 The METABRIC dataset used in this study is available at https://www.cbioportal.org/study/summary?id=brca_metabric. 
 
-The omic data of the other datasets (TCGA-BRCA, TCGA-LGG), as well as the survival time information, are available at https://portal.gdc.cancer.gov/.
+The omic data of the other datasets (TCGA-BRCA, TCGA-LGG, TCGA-LUSC), as well as the survival time information, are available at https://portal.gdc.cancer.gov/.
 
 
 # Usage
