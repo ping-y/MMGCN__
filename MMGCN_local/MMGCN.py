@@ -294,31 +294,7 @@ def get_edge_pred_loss(attention_train, is_homorphy, tr_labels):
 
 def get_edge_pred_label(gammar, trvalte_adj, tr_labels, val_labels, te_labels):
     """"""
-    y=np.concatenate([tr_labels, val_labels, te_labels])
-    flag_1 = np.matmul(y.reshape(-1, 1), y.reshape(1, -1))
-    flag_0 = np.matmul((1 - y).reshape(-1, 1), (1 - y).reshape(1, -1))
-
-    trvalte_adj=np.array(trvalte_adj)
-
-    k=12
-    tr_adj = trvalte_adj[:tr_labels.shape[0], :][:, :tr_labels.shape[0]]
-    diag_original = np.diag(tr_adj).copy()
-    tmp_i = tr_adj - np.diag(diag_original)
-    ls_thred_value = []
-    for j in tmp_i:
-        k_value = sorted(list(j))[-k]
-        ls_thred_value.append([k_value] * tmp_i.shape[1])
-    ls_thred_value = np.array(ls_thred_value)
-    tr_adj = np.where(tmp_i >= ls_thred_value, tmp_i, 0)
-
-    tr_flag_1=flag_1[:tr_labels.shape[0], :][:, :tr_labels.shape[0]]
-    tr_flag_0 = flag_0[:tr_labels.shape[0], :][:, :tr_labels.shape[0]]
-    label_1_weight=(tr_flag_1*tr_adj).sum()/(tr_flag_1*tr_adj>0).sum()
-    label_0_weight = (tr_flag_0 * tr_adj).sum()/ (tr_flag_0 * tr_adj>0).sum()
-
-    is_homorphy = np.where(flag_1 > 0, gammar*1, 0)
-    is_homorphy = np.where(flag_0 > 0, gammar*label_0_weight/label_1_weight, is_homorphy)
-    is_homorphy = torch.FloatTensor(is_homorphy)
+    # The code is about to be made public.
     return is_homorphy
 
 
